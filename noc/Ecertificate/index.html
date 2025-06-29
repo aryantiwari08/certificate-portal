@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Certificate</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            height: 100vh;
+            position: relative;
+        }
+        
+        .certificate-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .certificate-btn {
+            background-color: #5578c7;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 400;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+            transition: background-color 0.2s ease;
+            min-width: 130px;
+        }
+        
+        .certificate-btn:hover {
+            background-color: #4a6bb3;
+        }
+        
+        .certificate-btn:active {
+            background-color: #3f5d9f;
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate-container">
+        <a href="#" id="certificateBtn" class="certificate-btn" target="_blank">
+            Course Certificate
+        </a>
+    </div>
+
+    <script>
+        // Get certificate ID from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const certificateId = urlParams.get('q');
+        
+        // Set up the certificate button
+        const certificateBtn = document.getElementById('certificateBtn');
+        
+        if (certificateId) {
+            // You can customize this path based on where you store your PDFs
+            // Option 1: If PDFs are in a 'certificates' folder
+            certificateBtn.href = `/certificates/${certificateId}.pdf`;
+            
+            // Option 2: If you want to use the original NPTEL-style path
+            // certificateBtn.href = `/NOC/NOC25/SEM1/Ecertificates/110/noc25-mg08/Course/${certificateId}.pdf`;
+            
+            // Option 3: If you have a specific PDF file, replace with your actual PDF URL
+            // certificateBtn.href = '/path/to/your/specific/certificate.pdf';
+        } else {
+            // If no certificate ID, you can set a default behavior
+            certificateBtn.href = '#';
+            certificateBtn.onclick = function(e) {
+                e.preventDefault();
+                alert('No certificate ID provided in URL');
+            };
+        }
+    </script>
+</body>
+</html>
